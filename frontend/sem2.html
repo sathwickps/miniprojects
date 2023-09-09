@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Semester 2-Registration Form</title>
+<link rel="stylesheet" href="/css/2sem.css">
+</head>
+<body>
+<h2>Semester 2<h2>
+<h2>Registration Form</h2>
+<div class="table-view">
+    
+<h3>Cumpolsory Course</h3>
+<table>
+<tr>
+<th>Course Code</th>
+<th>Subject</th>
+<th>Credit</th>
+<th>Enable/Disable</th>
+</tr>
+<tr>
+<td>22MCA201</td>
+<td>SE*:</td>
+<td>4</td>
+<td>
+<label class="switch">
+<input type="checkbox" id="2field1" onchange="toggleField(this.id)" required>
+<span class="slider"></span>
+</label>
+</td>
+</tr>
+<tr>    
+<td>22MCA202</td>
+<td>MAD*:</td>
+<td>4</td>
+<td>
+<label class="switch">
+<input type="checkbox" id="2field2" onchange="toggleField(this.id)" required>
+<span class="slider"></span>
+</label>
+</td>
+</tr>
+<tr>
+<td>22MCA203</td>
+    <td>WT*:</td>
+    <td>4</td>
+        <td>
+    <label class="switch">
+    <input type="checkbox" id="2field1" onchange="toggleField(this.id)" required>
+    <span class="slider"></span>
+    </label>
+    </td>
+    </tr>
+    <tr>
+        <td>22MCA204</td>
+    <td>Java*:</td>
+    <td>4</td>
+    <td>
+    <label class="switch">
+    <input type="checkbox" id="2field2" onchange="toggleField(this.id)" required>
+    <span class="slider"></span>
+    </label>
+    </td>
+    </tr>
+    
+    <td>22MCA207</td>
+        <td>ST*:</td>
+        <td>2</td>
+            <td>
+        <label class="switch">
+        <input type="checkbox" id="2field5" onchange="toggleField(this.id)" required>
+        <span class="slider"></span>
+        </label>
+        </td>
+        </tr>
+        <tr>
+            <td>22MCA208</td>
+        <td>MiniProject*:</td>
+        <td>2</td>
+        <td>
+        <label class="switch">
+        <input type="checkbox" id="2field6" onchange="toggleField(this.id)" required>
+        <span class="slider"></span>
+        </label>
+        </td>
+        </tr>           
+</table>
+<h3>Elective Course-1</h3>
+<table>
+    <tr>
+        <th>Course Code</th>
+        <th>Subject</th>
+        <th>Credit</th>
+        <th>Enable/Disable</th>
+        </tr>
+    <tr>   
+        <td>22MCA2051</td>
+        <td>BDA:</td>
+        <td>3</td>
+        <td>
+        <label class="switch">
+        <input type="radio" id="2field3" name="elective1" onchange="toggleField(this.id)" required>
+        <span class="slider"></span>
+        </label>
+        </td>
+        </tr>
+        <tr>
+            <td>22MCA2052</td>
+            <td>NoSql:</td>
+            <td>3</td>
+            <td><label class="switch">
+                <input type="radio" id="2field3" name="elective1" onchange="toggleField(this.id)" required>
+                <span class="slider"></span>
+                </label></td>
+</tr>
+</table>
+<h3>Elective Course-2</h3>
+<table>
+    <tr>
+        <th>Course Code</th>
+        <th>Subject</th>
+        <th>Credit</th>
+        <th>Enable/Disable</th>
+        </tr>
+<tr>   
+    <td>22MCA2063</td>
+    <td>OR:</td>
+    <td>3</td>
+    <td>
+    <label class="switch">
+    <input type="radio" id="field4" name="elective2" onchange="toggleField(this.id)" required>
+    <span class="slider"></span>
+    </label>
+    </td>
+    </tr>
+    <tr>
+        <td>22MCA2065</td>
+        <td>DM:</td>
+        <td>3</td>
+        <td><label class="switch">
+            <input type="radio" id="2field4" name="elective2" onchange="toggleField(this.id)" required>
+            <span class="slider"></span>
+            </label></td>
+</tr>  
+<tr>
+</table>
+</div>
+<br>
+<input type="submit" value="Submit" id="sem2_sub-btn">
+
+<script>
+function toggleField(fieldName) {
+var field = document.getElementById(fieldName);
+var slider = document.querySelector('#' + fieldName + ' + .slider');
+function toggleField(fieldName) {
+var field = document.getElementById(fieldName);
+var slider = document.querySelector('#' + fieldName + ' + .slider');
+if (field.disabled) {
+field.disabled = false;
+slider.classList.remove('off');
+}
+field.disabled = true;
+slider.classList.add('off');
+if (isFormValid) {
+                // Form submission code here
+                alert('Form submitted successfully!');
+            } else {
+                alert('Please enable all fields before submitting the form.');
+            }
+        }
+}
+
+document.getElementById("sem1_sub-btn").onclick = function() {
+            var fields = document.querySelectorAll('input[type="checkbox"]');
+            var allFieldsEnabled = true;
+            fields.forEach(function (field) {
+                if (field.disabled) {
+                    allFieldsEnabled = false;
+                    return;
+                }
+            });
+
+            if (allFieldsEnabled) {
+                // Form submission code here
+                alert('Form submitted successfully!');
+            } else {
+                alert('Please enable all fields before submitting the form.');
+            }
+            
+        };
+    </script>
+</body>
+</html>
+

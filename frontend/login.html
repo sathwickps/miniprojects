@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="login-form">
+      <h2>Login</h2>
+      <select id="user-type" required>
+        <option value="" disabled selected>Select User Type</option>
+        <option value="#27ae60">User</option> 
+        <option value="#e74c3c">Admin</option> 
+      </select>
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <input type="submit" value="Login" id="login-btn">
+      
+    </div>
+  </div>
+  <script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Semester 1-Registration Form</title>
+<link rel="stylesheet" href="/css/1sem.css">
+</head>
+<body>
+<h2>Semester 1<h2>
+<h2>Registration Form</h2>
+
+<div class="table-view">
+    <h3>Cumpolsory Courses</h3>
+<table>
+<tr>
+<th>Course Code</th>
+<th>Subject</th>
+<th>Credit</th>
+<th>Enable/Disable</th>
+</tr>
+<tr>
+<td>22MCA101</td>
+<td>MFCA*:</td>
+<td>4</td>
+<td>
+<label class="switch">
+<input type="checkbox" id="field1" onchange="toggleField(this.id)" required>
+<span class="slider"></span>
+</label>
+</td>
+</tr>
+<tr>    
+<td>22MCA102</td>
+<td>OS*:</td>
+<td>4</td>
+<td>
+<label class="switch">
+<input type="checkbox" id="field2" onchange="toggleField(this.id)" required>
+<span class="slider"></span>
+</label>
+</td>
+</tr>
+<tr>
+<td>22MCA103</td>
+    <td>DS&A*:</td>
+    <td>4</td>
+        <td>
+    <label class="switch">
+    <input type="checkbox" id="1field3" onchange="toggleField(this.id)" required>
+    <span class="slider"></span>
+    </label>
+    </td>
+    </tr>
+    <tr>
+        <td>22MCA104</td>
+    <td>DBMS*:</td>
+    <td>4</td>
+    <td>
+    <label class="switch">
+    <input type="checkbox" id="1field4" onchange="toggleField(this.id)" required>
+    <span class="slider"></span>
+    </label>
+    </td>
+    </tr>
+    <tr>
+        <td>22MCA105</td>
+        <td>CN*:</td>
+        <td>3</td>
+        <td>
+        <label class="switch">
+        <input type="checkbox" id="1field5" onchange="toggleField(this.id)" required>
+        <span class="slider"></span>
+        </label>
+        </td>
+        </tr>
+        <tr>
+            <td>22MCA106</td>
+        <td>Python Lab*:</td>
+        <td>3</td>
+        <td>
+        <label class="switch">
+        <input type="checkbox" id="1field6" onchange="toggleField(this.id)" required>
+        <span class="slider"></span>
+        </label>
+        </td>
+        </table>
+        <h3>Optional Course</h3>
+        <table>
+            <tr>
+                <th>Course Code</th>
+                <th>Subject</th>
+                <th>Credit</th>
+                <th>Enable/Disable</th>
+                </tr>
+        <td>22MCA1BC</td>
+            <td>Bridge Course:</td>
+            <td>0</td>
+            <td>
+            <label class="switch">
+            <input type="checkbox" id="1field7" onchange="toggleField(this.id)" >
+            <span class="slider"></span>
+            </label>
+            </td>
+        
+</table>
+</div>
+<br>
+<input type="submit" value="Submit" id="sem1_sub-btn">
+
+<script>
+function toggleField(fieldName) {
+var field = document.getElementById(fieldName);
+var slider = document.querySelector('#' + fieldName + ' + .slider');
+function toggleField(fieldName) {
+var field = document.getElementById(fieldName);
+var slider = document.querySelector('#' + fieldName + ' + .slider');
+if (field.disabled) {
+field.disabled = false;
+slider.classList.remove('off');
+}
+field.disabled = true;
+slider.classList.add('off');
+if (isFormValid) {
+                // Form submission code here
+                alert('Form submitted successfully!');
+            } else {
+                alert('Please enable all fields before submitting the form.');
+            }
+        }
+}
+
+document.getElementById("sem1_sub-btn").onclick = function() {
+            var fields = document.querySelectorAll('input[type="checkbox"]');
+            var allFieldsEnabled = true;
+            fields.forEach(function (field) {
+                if (field.disabled) {
+                    allFieldsEnabled = false;
+                    return;
+                }
+            });
+
+            if (allFieldsEnabled) {
+                // Form submission code here
+                alert('Form submitted successfully!');
+            } else {
+                alert('Please enable all fields before submitting the form.');
+            }
+            
+        };
+    </script>
+</body>
+</html>
+

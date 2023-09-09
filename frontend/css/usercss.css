@@ -1,0 +1,36 @@
+.semester-form select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #555;
+  background-color: #f9f9f9;
+}
+
+.semester-form select option {
+  background-color: #f9f9f9;
+  color: #555;
+  
+}
+
+h2{
+  text-align: center;
+}
+.semester-form input[type="submit"] {
+  width: 20%;
+  padding: 12px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+}
+
+.semester-form input[type="submit"]:hover {
+  background-color: #2980b9;
+}
