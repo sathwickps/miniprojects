@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="login-form">
+      <h2>Login</h2>
+      <select id="user-type" required>
+        <option value="" disabled selected>Select User Type</option>
+        <option value="#27ae60">User</option> 
+        <option value="#e74c3c">Admin</option> 
+      </select>
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <input type="submit" value="Login" id="login-btn">
+      
+    </div>
+  </div>
+  <script>
+    document.getElementById("login-btn").addEventListener("click", function(event) {
+    event.preventDefault();
+  
+    let userType = document.getElementById("user-type").value;
+    let username = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+    localStorage.setItem("usn",username);
+  
+    validatePassword(username, pass).then(success => {
+      if (success) {
+        window.location.href = "sem1.html";
+      } else {
+        alert("Password validation failed.");
+      }
+    }).catch(error => {
+      console.error("Error:", error);
+    });
+  });
+  
+  async function validatePassword(username,pass){
+    let response=await fetch("http://127.0.0.1:5000/login", {
+    method: "POST",
+    body: JSON.stringify({
+        usn: username,
+        password: pass
+        
+    }),
+    headers: {
+        "Content-type": "application/json"
+    }
+  });
+
+  
+  let data= await response.json();
+  console.log('validated');
+  return data.success;
+  }  
+  </script>
+</body>
+</html>

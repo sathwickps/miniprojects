@@ -1,11 +1,4 @@
 import sqlite3
-from flask import Flask, request
-from flask_cors import CORS
-
-app = Flask(__name__)
-
-CORS(app,resources={r"/password/validate": {"origins": "*"}}, supports_credentials=True)
-
 
 def connect():
     conn = sqlite3.connect('StudentDB.db')
@@ -22,20 +15,40 @@ def getPasswordbyUsn(usn):
     closeConnection(con)
     return userPassword
 
-@app.route("/password/validate", methods=['POST'])
-def passwordValidate():
-    request_data = request.json
-    username = request_data["usn"]
-    password = request_data["password"]
-    print(username)
-    print(password)
-    passwd = getPasswordbyUsn(username)
+def getStudentDetails(usn):
+    con = connect()
+    cur = con.cursor()
+    cur.execute("SELECT * FROM student where usn = ?", (usn,))
+    userSem = cur.fetchone()
+    closeConnection(con)
+    return userSem
 
-    if passwd and passwd[0] == password:
-        return {"success": True}
-    else:
-        return {"success": False}
+def insertIntoStudChoice(sub_code, sem, usn):
+    con = connect()
+    cur = con.cursor()
+    cur.execute("INSERT INTO stud_choice (sub_code, sem, usn) VALUES (?, ?, ?)", (sub_code, sem, usn))
+    closeConnection(con)
 
-@app.route("/get/sem", methods=['GET'])   
-def semByUsn():
-    return {"sem":1}
+def getAdminPassword(username):
+    con = connect()
+    cur = con.cursor()
+    cur.execute("SELECT password FROM admin WHERE user_name = ?", (username,))
+    password = cur.fetchone()
+    closeConnection(con)
+    return password
+
+def getSubjectsBySem(sem, optional):
+    con = connect()
+    cur = con.cursor()
+    cur.execute("SELECT sub_code, sub_name, credits FROM subject WHERE sem = ? AND optional = ?", (sem, optional))
+    subDetails = cur.fetchall()
+    closeConnection(con)
+    return subDetails
+
+def getSubjectsByUsn(usn, optional):
+    con = connect()
+    cur = con.cursor()
+    cur.execute("SELECT sc.sub_code, sub.sub_name, sub.credits FROM stud_choice AS sc JOIN student as s ON sc.usn = s.usn JOIN subject as sub ON sub.sub_code = sc.sub_code WHERE s.usn = ? AND sub.optional = ?", (usn, optional))
+    subjects = cur.fetchall()
+    closeConnection(con)
+    return subjects
