@@ -2,6 +2,7 @@ import db
 from flask import Flask,request
 from flask_cors import CORS,cross_origin
 
+
 app = Flask(__name__)
 CORS(app)
 
@@ -12,12 +13,11 @@ def passwordValidate():
     password=request.json["password"]
     print(username)
     print(password)
-    passwd=db.getPasswordbyUsn(username)[0]
-    
+    passwd=db.getPasswordbyUsn(username)[0]    
     if passwd==password:
-        return {"success":'true'}
+        return {"success":True}
     else:
-        return {"success":'fail'}
+        return {"success":False}
 
 
 # json should be of the form
@@ -52,30 +52,27 @@ def addSubjectsByUsn():
         db.insertIntoStudChoice(subCode, sem, usn)
     return { "success" : True }
 
+
 # /subjects?sem=2
 @app.route("/subjects", methods=["GET"])
 def getSubjectBySem():
-    sem = request.args.get("sem")
-    
+    sem = request.args.get("sem")    
     compulsorySubjects = db.getSubjectsBySem(sem, 0)
     optionalSubjects = db.getSubjectsBySem(sem, 1)
-
     return { "compulsorySubjects": compulsorySubjects, "optionalSubjects": optionalSubjects }
+
 
 #/student?usn=1BY22MC058
 @app.route("/student", methods=["GET"])
 def getStudentByUsn():
     usn = request.args.get("usn")    
     studentDetails = db.getStudentDetails(usn)
-
     return { "usn": studentDetails[0], "name": studentDetails[1], "sem": studentDetails[2] }
 
 #/students/subjects?usn=1BY22MC058
 @app.route("/student/subjects", methods=["GET"])
 def getSubjectsByUsn():
-    usn = request.args.get("usn")
-    
+    usn = request.args.get("usn")    
     compulsorySub = db.getSubjectsByUsn(usn, 0)
     optionalSub = db.getSubjectsByUsn(usn, 1)
-
     return { "compulsorySubjects": compulsorySub, "optionalSubjects": optionalSub }

@@ -27,6 +27,7 @@ def insertIntoStudChoice(sub_code, sem, usn):
     con = connect()
     cur = con.cursor()
     cur.execute("INSERT INTO stud_choice (sub_code, sem, usn) VALUES (?, ?, ?)", (sub_code, sem, usn))
+    con.commit()
     closeConnection(con)
 
 def getAdminPassword(username):
