@@ -23,12 +23,12 @@ function onLoad() {
     console.log(sem);
     const compulsorySubjects = subjects.compulsorySubjects;
     const optionalSubjects = subjects.optionalSubjects;
-    let compulsoryTable = '<table><tr><th>Code</th><th>Name</th><th>Credits</th><th>Action</th></tr>';
+    let compulsoryTable = '<h3>Compulsory Courses</h3><table class="table"><tr><th>Code</th><th>Name</th><th>Credits</th><th>Action</th></tr>';
     for (const subject of compulsorySubjects) {
       compulsoryTable += `<tr><td>${subject[0]}</td><td>${subject[1]}</td><td>${subject[2]}</td><td><input type="checkbox" name="enableDisable" value="${subject[0]}"></td></tr>`;
     }
     compulsoryTable += '</table>';
-    let optionalTable = '<table><tr><th>Code</th><th>Name</th><th>Credits</th><th>Select</th></tr>';
+    let optionalTable = '<h3>Optional Courses</h3><table class="table"><tr><th>Code</th><th>Name</th><th>Credits</th><th>Select</th></tr>';
     for (let i = 0; i < optionalSubjects.length; i++) {
       //const nameAttribute = i < 2 ? 'optionalChoice1' : 'optionalChoice2';
       optionalTable += `<tr><td>${optionalSubjects[i][0]}</td><td>${optionalSubjects[i][1]}</td><td>${optionalSubjects[i][2]}</td><td><input type="checkbox" name="optionalSubjects" value="${optionalSubjects[i][0]}" ${i < 2 ? 'unchecked' : ''}></td></tr>`;
@@ -100,8 +100,10 @@ function collectSelectedSubjects() {
 // Add a submit button to the form and trigger the `collectSelectedSubjects()` function when it is clicked.
 const submitButton = document.createElement("button");
 submitButton.type = "submit";
+submitButton.className="btn btn-primary"
 submitButton.textContent = "Submit";
 document.body.appendChild(submitButton);
+
 submitButton.addEventListener("click", async (event) => {
   event.preventDefault();
   collectSelectedSubjects();
