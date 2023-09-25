@@ -90,13 +90,11 @@ function collectSelectedSubjects() {
   for (const sub of optionalSubjects) {
     subCodes.push(sub.value);
   }
-
   // Store the selected subject codes in the `subCodes` hidden input field.
   subCodesInput.value = JSON.stringify(subCodes);
   console.log(subCodes);
   return;
 }
-
 // Add a submit button to the form and trigger the `collectSelectedSubjects()` function when it is clicked.
 const submitButton = document.createElement("button");
 submitButton.type = "submit";

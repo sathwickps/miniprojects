@@ -1,68 +1,3 @@
-// document.getElementById("login-btn").addEventListener("click", async function (event) {
-//   event.preventDefault();
-
-//   const userType = document.getElementById("user-type").value;
-//   const username = document.getElementById("username").value;
-//   const password = document.getElementById("password").value;
-
-//   try {
-//     const isPasswordValid = await validatePassword(username, password);
-
-//     if (isPasswordValid) {
-//       if (userType === "student") {
-//         const hasSubmittedForm = await checkFormSubmission(username);
-//         console.log(hasSubmittedForm);
-//         if (hasSubmittedForm) {
-//           alert("You have already submitted the form. Cannot login again.");
-//         } else {
-//           // Fetch subjects and display tables
-//           const sem = localStorage.getItem("sem");
-//           const subjects = await getSubjectBySem(sem);
-//           displaySubjectTables(subjects);
-//         }
-//       } else if (userType === "admin") {
-//         window.location.href = "adminpage.html";
-//       } else {
-//         alert("Please select a user type.");
-//       }
-//     } else {
-//       alert("Password validation failed.");
-//     }
-//   } catch (error) {
-//     console.error("Error:", error);
-//   }
-// });
-
-    
-
-//   async function validatePassword(username,pass){
-//     let response=await fetch("http://127.0.0.1:5000/password/validate", {
-//     method: "POST",
-//     body: JSON.stringify({
-//         usn: username,
-//         password: pass        
-//     }),
-//     headers: {
-//         "Content-type": "application/json"
-//     }
-//   });  
-//   let data= await response.json();
-//   console.log('validated');
-//   return data.success;
-//   }
-
-//   async function getStudentDetails(username){
-//     let response=await fetch("http://127.0.0.1:5000/student?usn="+username, {
-//     method: "GET",    
-//     headers: {
-//         "Content-type": "application/json"
-//     }
-//   });  
-//   let data= await response.json();
-//   console.log('validated');
-//   return data;
-// }
-
 async function checkFormSubmission(username) {
   try {
     const response = await fetch("http://127.0.0.1:5000/student/subjects?usn=" + username, {
@@ -121,8 +56,15 @@ document.getElementById("login-btn").addEventListener("click", function(event) {
       console.error("Error:", error);
     });
   } else if (userType === "admin") {
-   window.location.href = "adminpage.html";
-  } else {
+    validateAdminPassword(username, pass).then(success => {
+      if (success) {
+        window.location.href = "adminpage.html";
+      } else {
+        alert("Password validation failed!!");
+      }
+    });
+  }
+  else {
     alert("Please select a user type.");
   }
 });
@@ -143,13 +85,31 @@ async function validatePassword(username, pass) {
   return data.success;
 }
 
-async function getStudentDetails(username) {
-  let response = await fetch("http://127.0.0.1:5000/student?usn=" + username, {
-    method: "GET",    
+
+async function validateAdminPassword(username, pass) {
+  let response = await fetch("http://127.0.0.1:5000/admin/password/validate", {
+    method: "POST",
+    body: JSON.stringify({
+      username: username,
+      password: pass
+    }),
     headers: {
       "Content-type": "application/json"
     }
-  });  
+  });
+
+  let data = await response.json();
+  console.log('validated');
+  return data.success;
+}
+
+async function getStudentDetails(username) {
+  let response = await fetch("http://127.0.0.1:5000/student?usn=" + username, {
+    method: "GET",
+    headers: {
+      "Content-type": "application/json"
+    }
+  });
   let data = await response.json();
   console.log('validated');
   return data;

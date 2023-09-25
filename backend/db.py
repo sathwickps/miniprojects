@@ -33,7 +33,7 @@ def insertIntoStudChoice(sub_code, sem, usn):
 def getAdminPassword(username):
     con = connect()
     cur = con.cursor()
-    cur.execute("SELECT password FROM admin WHERE user_name = ?", (username,))
+    cur.execute("SELECT password FROM admin WHERE username = ?", (username,))
     password = cur.fetchone()
     closeConnection(con)
     return password

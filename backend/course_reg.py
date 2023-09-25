@@ -6,36 +6,36 @@ from flask_cors import CORS,cross_origin
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/password/validate",methods=['POST'])
-def passwordValidate():
-    print('Function called')
-    username=request.json["usn"]
-    password=request.json["password"]
-    print(username)
-    print(password)
-    passwd=db.getPasswordbyUsn(username)[0]    
-    if passwd==password:
-        return {"success":True}
-    else:
-        return {"success":False}
-
-
 # json should be of the form
 # {
 #     "username": "123",
 #     "password": "123"
 # }
+@app.route("/password/validate",methods=['POST'])
+def passwordValidate():
+    username=request.json["usn"]
+    password=request.json["password"]
+    print(username)
+    print(password)
+    passwd=db.getPasswordbyUsn(username)[0]   
+    print(passwd) 
+    if passwd==password:
+        return {"success":True}
+    else:
+        return {"success":False}
+
 @app.route("/admin/password/validate", methods=["POST"])
 def adminPasswordValidate():
     username = request.json["username"]
     password = request.json["password"]
-    adminPass = db.getAdminPassword(username)
-
+    print(username)
+    print(password)
+    adminPass = db.getAdminPassword(username)[0]
+    print(adminPass)
     if adminPass == password:
         return { "success" : True }
     else:
         return { "success" : False }
-
 
 # json should be of the form
 # {
