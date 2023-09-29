@@ -1,0 +1,105 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    margin: auto;
+    max-width: 800px;
+  }
+  table {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        border-collapse: separate;
+    width: 100%;
+    font-size: 18px;
+    border: 1px solid black;
+  }
+  th {
+    background-color: #eee;
+  }
+ 
+  table {
+    background:#70a1cc;
+    }
+
+  
+  body {
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  }   
+  .toggle-button {
+    width: 50px;
+    height: 25px;
+    position: relative;
+    cursor: pointer;
+  }    
+  th {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+  .toggle-button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    background-color: #ccc;
+    border-radius: 50%;
+    transition: all 0.2s ease-in-out;
+  }
+  .toggle-button:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    transition: all 0.2s ease-in-out;
+  }
+  .toggle-button:checked:before {
+    background-color: #2196F3;
+  }
+  .toggle-button:checked:after {
+    transform: translateX(25px);
+  }
+  button {
+    background-color: #2196F3;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: center;
+  }
+  h3 {
+    padding: 10px;
+    border-bottom: 2px solid #333;
+    color: #333;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  p {
+    font-family: sans-serif;
+    font-size: 16px;
+  }
+  form {
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  @media (max-width: 768px) {
+    .grid-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 576px) {
+    .grid-container {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
